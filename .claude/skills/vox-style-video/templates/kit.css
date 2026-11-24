@@ -26,10 +26,12 @@ body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: anti
 
 /* ---------- stage, paper, grain, vignette ---------- */
 .stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; }
+.stage::before { /* static vignette (kept separate so it doesn't jitter with the grain) */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 998;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.28) 100%); }
 .stage::after { /* film grain + vignette on top of everything */
   content: ""; position: absolute; inset: -50%; pointer-events: none; z-index: 999;
   background:
-    radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.28) 100%) center / 50% 50% no-repeat,
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   opacity: .22; mix-blend-mode: multiply;
   animation: grain .5s steps(5) infinite;
@@ -88,7 +90,9 @@ body { font-family: var(--sans); color: var(--ink); -webkit-font-smoothing: anti
   padding: 0 .12em; margin: 0 -.06em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
   animation: hl .55s var(--ease) calc((var(--start) + var(--d, 0) + .3) * 1s) both;
 }
-.dark .hl { color: var(--ink); }
+.dark .hl { animation: hl .55s var(--ease) calc((var(--start) + var(--d, 0) + .3) * 1s) both,
+                     hl-ink .3s linear calc((var(--start) + var(--d, 0) + .45) * 1s) both; }
+@keyframes hl-ink { from { color: inherit } to { color: var(--ink) } }
 .hl.red { --accent: var(--accent-2); }
 @keyframes hl { to { background-size: 100% 70%; } }
 
