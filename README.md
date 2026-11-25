@@ -21,10 +21,14 @@ Studio **video infografik** dengan skill Claude Code. Panduan kerja penuh: [`CLA
 ```bash
 bin/projek-baru.sh nama-video          # salin projek/_templat
 bin/render.sh nama-video --stills 2,8  # semak bingkai
+bin/narator.sh nama-video ms-MY-YasminNeural   # narasi.txt → suara percuma
+bin/render.sh nama-video --audio projek/nama-video/output/narasi.mp3
 bin/render.sh nama-video               # → projek/nama-video/output/nama-video.mp4
 ```
 
 - `infografik/infografik.css` — donut, carta garis, piktogram, bar mendatar, bar bertindan, grid statistik, versus, bulatan.
 - `projek/contoh-sampah-plastik/` — contoh lengkap (data OECD 2022).
 
-Keperluan: Node 18+, Playwright (Chromium), ffmpeg.
+Mulakan dengan berkata **"buat video …"** — skill `buat-video` akan terus beri pilihan gaya, narator, nisbah & durasi.
+
+Keperluan: Node 18+, Playwright (Chromium), ffmpeg, Python + `pip install edge-tts` (narator percuma).

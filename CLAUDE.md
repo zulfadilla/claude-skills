@@ -10,6 +10,14 @@ angka beranimasi → MP4) memakai dua skill dalam `.claude/skills/`:
 
 Bahasa kerja: Bahasa Melayu (ikut bahasa pengguna).
 
+> **Peraturan utama:** bila pengguna kata "buat video" (atau apa-apa permintaan
+> video), invoke skill **`buat-video`** dan panggilan pertama ialah
+> **AskUserQuestion** — pilihan gaya, narator, nisbah, durasi. Jangan tulis
+> skrip/kod sebelum pengguna memilih.
+
+Narator percuma: `bin/narator.sh <slug> ms-MY-YasminNeural` (edge-tts, tiada
+API key) → `narasi.mp3` + `narasi.srt`. Sampel suara: `narator/sampel/`.
+
 ## Struktur
 
 ```
@@ -23,6 +31,7 @@ projek/<slug>/              satu folder setiap video
   output/                   MP4 + stills (diabaikan git)
 bin/projek-baru.sh <slug>   salin templat
 bin/render.sh <slug> [...]  render MP4 / stills
+bin/narator.sh <slug> [suara] [kadar]  narasi.txt → narasi.mp3 + .srt (percuma)
 ```
 
 ## Aliran kerja infografik

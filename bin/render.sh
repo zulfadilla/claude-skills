@@ -8,5 +8,11 @@ dir="$root/projek/$slug"
 mkdir -p "$dir/output"
 out="$dir/output/$slug.mp4"
 [[ " $* " == *" --stills "* ]] && out="$dir/output/stills"
+# jadikan laluan --audio/--music mutlak sebelum cd
+args=(); prev=""
+for a in "$@"; do
+  if [[ "$prev" == "--audio" || "$prev" == "--music" ]] && [ -e "$a" ]; then a="$(cd "$(dirname "$a")" && pwd)/$(basename "$a")"; fi
+  args+=("$a"); prev="$a"
+done
 cd "$dir"
-exec node "$root/.claude/skills/vox-style-video/scripts/render.mjs" video.html --out "$out" "$@"
+exec node "$root/.claude/skills/vox-style-video/scripts/render.mjs" video.html --out "$out" "${args[@]}"
