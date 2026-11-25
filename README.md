@@ -1,6 +1,6 @@
 # claude-skills
 
-Koleksi skill Claude Code.
+Studio **video infografik** dengan skill Claude Code. Panduan kerja penuh: [`CLAUDE.md`](CLAUDE.md).
 
 | Skill | Fungsi |
 |---|---|
@@ -15,3 +15,16 @@ Koleksi skill Claude Code.
   git clone https://github.com/zulfadilla/claude-skills.git
   cp -r claude-skills/.claude/skills/* ~/.claude/skills/
   ```
+
+## Video infografik
+
+```bash
+bin/projek-baru.sh nama-video          # salin projek/_templat
+bin/render.sh nama-video --stills 2,8  # semak bingkai
+bin/render.sh nama-video               # → projek/nama-video/output/nama-video.mp4
+```
+
+- `infografik/infografik.css` — donut, carta garis, piktogram, bar mendatar, bar bertindan, grid statistik, versus, bulatan.
+- `projek/contoh-sampah-plastik/` — contoh lengkap (data OECD 2022).
+
+Keperluan: Node 18+, Playwright (Chromium), ffmpeg.
