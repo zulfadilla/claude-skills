@@ -1,6 +1,6 @@
 ---
 name: buat-video
-description: Pintu masuk untuk SETIAP permintaan video dalam repo ini. Gunakan serta-merta apabila pengguna berkata "buat video", "buatkan video", "nak video", "video infografik", "video pasal …", "explainer", "video promo" atau seumpamanya. Langkah pertama WAJIB ialah memaparkan pilihan (AskUserQuestion) untuk gaya video, narator, nisbah dan durasi — sebelum menulis skrip atau kod. Kemudian serahkan kepada skill gaya yang dipilih (vox-style-video atau bang-motion) dan narator percuma edge-tts.
+description: Pintu masuk untuk SETIAP permintaan video dalam repo ini. Gunakan serta-merta apabila pengguna berkata "buat video", "buatkan video", "nak video", "video infografik", "video pasal …", "explainer", "video promo" atau seumpamanya. Langkah pertama WAJIB ialah memaparkan pilihan (AskUserQuestion) untuk gaya video, narator, nisbah dan durasi — sebelum menulis skrip atau kod. Kemudian serahkan kepada skill gaya yang dipilih (vox-style-video atau bang-motion) dan narator percuma (MeloTTS-MS / edge-tts).
 ---
 
 # Buat video — pilih dahulu, baru bina
@@ -27,15 +27,17 @@ pilihan: lakaran ASCII ringkas susun atur satu babak.
 **S2 · Narator** (header `Narator`)
 | Label | Penerangan |
 |---|---|
-| Yasmin — BM perempuan (Recommended) | Percuma (Microsoft Edge neural, `ms-MY-YasminNeural`). Jelas, mesra. |
-| Osman — BM lelaki | Percuma (`ms-MY-OsmanNeural`). Nada berita/dokumentari. |
-| ElevenLabs (kualiti premium) | Lebih ekspresif; guna kredit akaun ElevenLabs pengguna. |
+| Shafiqah — BM perempuan (Recommended) | Percuma, lokal (MeloTTS-MS, Mesolitica). Paling natural untuk BM. |
+| Husein — BM lelaki | Percuma, lokal (MeloTTS-MS). |
+| ElevenLabs (kualiti premium) | Paling ekspresif; guna kredit akaun ElevenLabs pengguna (semak baki dulu). |
 | Tanpa narator | Teks di skrin + sari kata sahaja (sesuai tonton tanpa bunyi). |
 
-"Other" → suara Indonesia `id-ID-GadisNeural` / `id-ID-ArdiNeural`, atau
-Inggeris (`en-US-AvaNeural`, `en-GB-RyanNeural`…). Sampel boleh didengar di
-`narator/sampel/` — tawarkan untuk hantar sampel dengan SendUserFile jika
-pengguna ragu.
+"Other" → Yasmin/Osman (`ms-MY-YasminNeural`/`ms-MY-OsmanNeural`, edge-tts,
+lebih mendatar), suara Multilingual (`en-US-AvaMultilingualNeural`…), atau
+Indonesia (`id-ID-GadisNeural`). Sampel: `narator/sampel/` (melotts-ms/,
+multilingual/) — tawarkan untuk hantar dengan SendUserFile jika pengguna ragu.
+Jangan sekali-kali guna speaker `anwar-ibrahim` dalam model MeloTTS-MS: ia
+meniru suara tokoh sebenar.
 
 **S3 · Nisbah** (header `Nisbah`): `16:9 YouTube (Recommended)` · `9:16 Reels/TikTok/Shorts` · `1:1 Instagram feed`
 
@@ -51,8 +53,9 @@ pengguna ragu.
 
 ## Langkah 3 — Narator
 
-- **edge-tts (Yasmin/Osman/lain-lain):** `bin/narator.sh <slug> <suara> [+5%]`
-  → `output/narasi.mp3` + `output/narasi.srt`. Guna masa dalam `.srt` untuk
+- **MeloTTS-MS (Shafiqah/Husein) atau edge-tts (lain-lain):**
+  `bin/narator.sh <slug> <suara> [+5%]` → `output/narasi.mp3` + `output/narasi.srt`.
+  MeloTTS dipasang automatik kali pertama (`bin/pasang-melo.sh`, ~5 minit). Guna masa dalam `.srt` untuk
   set `--start/--dur` setiap babak supaya visual tepat dengan ayat.
 - **ElevenLabs:** ikut arahan MCP ElevenLabs (`creative_list_voices` → pilih
   suara → `creative_generate_speech`); beritahu ia guna kredit.

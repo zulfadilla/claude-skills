@@ -21,7 +21,7 @@ Studio **video infografik** dengan skill Claude Code. Panduan kerja penuh: [`CLA
 ```bash
 bin/projek-baru.sh nama-video          # salin projek/_templat
 bin/render.sh nama-video --stills 2,8  # semak bingkai
-bin/narator.sh nama-video ms-MY-YasminNeural   # narasi.txt → suara percuma
+bin/narator.sh nama-video shafiqah   # narasi.txt → suara BM percuma (MeloTTS-MS)
 bin/render.sh nama-video --audio projek/nama-video/output/narasi.mp3
 bin/render.sh nama-video               # → projek/nama-video/output/nama-video.mp4
 ```
@@ -31,4 +31,4 @@ bin/render.sh nama-video               # → projek/nama-video/output/nama-video
 
 Mulakan dengan berkata **"buat video …"** — skill `buat-video` akan terus beri pilihan gaya, narator, nisbah & durasi.
 
-Keperluan: Node 18+, Playwright (Chromium), ffmpeg, Python + `pip install edge-tts` (narator percuma).
+Keperluan: Node 18+, Playwright (Chromium), ffmpeg, Python 3.11 + `uv` + espeak-ng untuk MeloTTS-MS (`bin/pasang-melo.sh`), atau `pip install edge-tts`.

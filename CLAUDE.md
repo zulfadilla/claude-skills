@@ -15,8 +15,10 @@ Bahasa kerja: Bahasa Melayu (ikut bahasa pengguna).
 > **AskUserQuestion** — pilihan gaya, narator, nisbah, durasi. Jangan tulis
 > skrip/kod sebelum pengguna memilih.
 
-Narator percuma: `bin/narator.sh <slug> ms-MY-YasminNeural` (edge-tts, tiada
-API key) → `narasi.mp3` + `narasi.srt`. Sampel suara: `narator/sampel/`.
+Narator percuma: `bin/narator.sh <slug> shafiqah|husein` (MeloTTS-MS, lokal,
+paling natural untuk BM; default) atau `ms-MY-YasminNeural` (edge-tts) →
+`narasi.mp3` + `narasi.srt`. Sampel suara: `narator/sampel/`. Jangan guna
+speaker `anwar-ibrahim` (meniru tokoh sebenar).
 
 ## Struktur
 
@@ -32,6 +34,7 @@ projek/<slug>/              satu folder setiap video
 bin/projek-baru.sh <slug>   salin templat
 bin/render.sh <slug> [...]  render MP4 / stills
 bin/narator.sh <slug> [suara] [kadar]  narasi.txt → narasi.mp3 + .srt (percuma)
+bin/pasang-melo.sh          pasang MeloTTS-MS ke .tts/melo (sekali sahaja)
 ```
 
 ## Aliran kerja infografik
